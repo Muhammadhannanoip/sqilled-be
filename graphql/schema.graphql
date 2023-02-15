@@ -1,0 +1,62 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"Can be used as an argument to upload files using https://github.com/jaydenseric/graphql-multipart-request-spec"
+scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+
+
+#import common.graphql
+#import user.graphql
+#import article.graphql
+#import booking.graphql
+#import blog.graphql
+
+type Query {
+    users: [User!]! @paginate(defaultCount: 10)
+    user(id: ID @eq): User @find
+    userEmail(email: String @where(operator: "=")): User @find 
+    # user(email: String! @eq): User @first
+    blogs: [Blog!]! @paginate(defaultCount: 10)
+    blog(id: ID @eq): Blog @find
+    blogComments: [BlogComment!]! @paginate(defaultCount: 10)
+    blogComment(id: ID @eq): BlogComment @find
+    topicOfInterest: [TopicOfInterest] @all
+    getBookings(status:Int):[Booking] @paginate(builder: "App\\GraphQL\\Queries\\GetBookings@getUsersBooking",defaultCount: 10) @guard(with: ["api"])
+    searchAuthor(keyword: String): [User] @paginate(builder: "App\\GraphQL\\Queries\\SearchAuthor@getAuthors",defaultCount: 10)
+    getAuthorUnavailableDate: [AuthorUnavailableDate] @guard(with: ["api"])
+    getExpireAndCancelledBooking: [Booking] @paginate(builder: "App\\GraphQL\\Queries\\GetBookings@getExpiredAndCancelledBooking",defaultCount: 10) @guard(with: ["api"])
+    checkBookingSlotAvailability(date: Date): AvailableTime @guard(with: ["api"])
+    checkAvailableBookingSlot(data: CheckAvailableBookingSlotInput): CheckAvailableBookingSlotResponse @guard(with: ["api"])
+    getEmailSubscription(user_type: User_Type): [EmailSubscription]  @guard(with: ["api"])
+}
+
+type Mutation { 
+    addCard(token :String): CommonResponse @guard(with: ["api"])
+    deleteUser: CommonResponse @guard(with: ["api"])
+    saveBooking(data :SaveBookingInput): CommonResponse @guard(with: ["api"])
+    saveFreeBooking(data :SaveFreeBookingInput): CommonResponse @guard(with: ["api"])
+    saveEmailSubscription(data : EmailSubscriptionInput): CommonResponse @guard(with: ["api"])
+    saveArticle(data:ArticleInput): CommonResponse @guard(with: ["api"])
+    blogUpload(data:BlogInput): CommonResponse @guard(with: ["api"])
+    editBlog(data:BlogEditInput): CommonResponse @guard(with: ["api"])
+    deleteBlog(data:BlogDeleteInput): CommonResponse @guard(with: ["api"])
+    blogCommentAdd(data:BlogCommentInput): CommonResponse @guard(with: ["api"])
+    editBlogComment(data:BlogCommentEditInput): CommonResponse @guard(with: ["api"])
+    deleteBlogComment(data:BlogCommentDeleteInput): CommonResponse @guard(with: ["api"])
+    editProfile(data: EditProfileInput!): User @guard(with: ["api"])
+    startVideoCall(booking_id:ID): VideoCallResponse @guard(with: ["api"])
+    readerJoinVideoCall(booking_id:ID): VideoCallResponse @guard(with: ["api"])
+    endVideoCall(booking_id:ID): CommonResponse @guard(with: ["api"])
+    # uploadVideoRecording(file:Upload!): CommonResponse @guard(with: ["api"])
+    uploadVideoRecording(file:String!): CommonResponse @guard(with: ["api"])
+    callInProgress(booking_id:ID): CommonResponse @guard(with: ["api"])
+    cancelledBooking(booking_id:ID): CommonResponse @guard(with: ["api"])
+    saveAuthorUnavailableDate(data:saveAuthorUnavailableDateInput): CommonResponse @guard(with: ["api"])
+    editAuthorUnavailableDate(data:EditAuthorUnavailableDateInput): CommonResponse @guard(with: ["api"])
+    DeleteAuthorUnavailableDate(id:ID): CommonResponse @guard(with: ["api"])
+
+ }
+

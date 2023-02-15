@@ -1,0 +1,18 @@
+
+type CommonResponse {
+    status: String
+    message: String
+}
+
+input ArticleInput {
+	title: String
+	content: String
+	published_date: Date
+}
+
+type TopicOfInterest {
+	id: ID
+	name: String
+}
+
+
