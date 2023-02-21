@@ -527,7 +527,7 @@ class SocialLogin
             $mailData['user_name'] = $user->name;
             $mailData['review_new_search_url'] = config('mail.data.review_new_search_url');
             $mailData['confirm_account_verification_link'] = config('mail.data.account_verify_confirm_link').'/'.$verify_token.'/'.$encrypted_email;
-            Mail::to($user)->send(new UserAccountVerificationMail($mailData));
+            // Mail::to($user)->send(new UserAccountVerificationMail($mailData));
 
             try {
                 $this->updateMailChimpTags($user);
