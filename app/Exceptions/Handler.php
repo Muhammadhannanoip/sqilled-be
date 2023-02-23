@@ -36,10 +36,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
-        // if($exception->getHttpStatusCode() == 401){
-        //     http_response_code(401);
-        //     die();
-        // }
+        if($exception->getHttpStatusCode() == 401){
+            http_response_code(401);
+            die();
+        }
         parent::report($exception);
     }
 

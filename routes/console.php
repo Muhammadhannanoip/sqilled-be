@@ -14,15 +14,6 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('user', function () {
-    \App\User::create([
-        'name' => 'Ranjit Rai',
-        'email' => 'myemail@email.com',
-        'password' => bcrypt('123456789qq')
-    ]);
-})->describe('Create sample user');
-
-
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+})->purpose('Display an inspiring quote');
