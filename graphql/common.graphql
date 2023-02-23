@@ -1,7 +1,0 @@
-
-type CommonResponse {
-    status: String
-    message: String
-}
-
-

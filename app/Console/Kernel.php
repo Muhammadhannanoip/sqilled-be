@@ -3,21 +3,10 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-
-use App\Console\Commands\ExpireBooking;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        ExpireBooking::class,
-    ];
-
     /**
      * Define the application's command schedule.
      *
@@ -26,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:expire-booking')->everyFiveMinutes();
+        // $schedule->command('inspire')->hourly();
     }
 
     /**
