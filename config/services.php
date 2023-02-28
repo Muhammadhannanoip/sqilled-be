@@ -30,22 +30,4 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URL_FACEBOOK'),
-    ],
-    
-    'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
-        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('CALLBACK_URL_GOOGLE'),
-    ],
-
-    
-    'oauth' => [
-        'personal_access_client_id' => env('PASSPORT_PERSONAL_CLIENT_ID', '1'),
-        'personal_access_client_secret' => env('PASSPORT_PERSONAL_CLIENT_SECRET', 'somesecret')
-    ],
-
 ];

@@ -2,16 +2,17 @@
 
 namespace App\GraphQL\Queries;
 
-use GraphQL\Type\Definition\ResolveInfo;
-use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Exceptions\GraphQLValidationException;
-use Illuminate\Support\Facades\Validator;
+use DB;
+
 use App\Entities\User;
 use App\Entities\Booking;
+use Illuminate\Support\Facades\Auth;
 use App\Entities\AuthorUnavailableDate;
-use DB;
-use Auth;
+use GraphQL\Type\Definition\ResolveInfo;
+use Illuminate\Support\Facades\Validator;
+use App\Exceptions\GraphQLValidationException;
+use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class checkAvailableBookingSlot
 {

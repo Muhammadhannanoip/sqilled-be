@@ -1,7 +1,8 @@
 <?php
 
-use GraphQL\Error\Debug;
+use GraphQL\Error\DebugFlag;
 use GraphQL\Validator\Rules\DisableIntrospection;
+
 
 return [
     /*
@@ -130,7 +131,7 @@ return [
     | Debugging is only applied if the global Laravel debug config is set to true.
     |
     */
-    'debug' => Debug::INCLUDE_DEBUG_MESSAGE | Debug::INCLUDE_TRACE,
+    'debug' => DebugFlag::INCLUDE_DEBUG_MESSAGE | DebugFlag::INCLUDE_TRACE,
 
     /*
     |--------------------------------------------------------------------------
